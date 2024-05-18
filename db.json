@@ -1,0 +1,144 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "mohanad",
+      "age": 20,
+      "email": "mohanadfarid733@gmail.com",
+      "userImage": "https://picsum.photos/300/300"
+    },
+    {
+      "id": "2",
+      "name": "ali",
+      "age": 16,
+      "email": "ali123@gmail.com",
+      "userImage": "https://picsum.photos/250/350"
+    },
+    {
+      "id": "3",
+      "name": "jack",
+      "age": 25,
+      "email": "jack456@gmail.com",
+      "userImage": "https://picsum.photos/250/300"
+    }
+  ],
+  "notes": [
+    {
+      "id": "1",
+      "creatorId": 1,
+      "title": "a title ",
+      "content": "is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to m ",
+      "tags": [
+        "asdf",
+        "sadf"
+      ],
+      "status": "todo"
+    },
+    {
+      "id": "5",
+      "creatorId": "2",
+      "title": "todo title",
+      "content": "is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to m",
+      "tags": [
+        "tag12",
+        "tag24",
+        "tag32"
+      ],
+      "status": "todo"
+    },
+    {
+      "id": "2",
+      "creatorId": "1",
+      "title": "another title",
+      "content": "is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to m",
+      "tags": [
+        "tag3",
+        "tag4",
+        "tag5"
+      ],
+      "status": "done"
+    },
+    {
+      "id": "3",
+      "creatorId": "1",
+      "title": "another title",
+      "content": "is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to m",
+      "tags": [
+        "tag1",
+        "tag2",
+        "tag3"
+      ],
+      "status": "done"
+    },
+    {
+      "id": "6",
+      "creatorId": "2",
+      "title": "another title",
+      "content": "is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to m",
+      "tags": [
+        "tag11",
+        "tag42",
+        "tag53"
+      ],
+      "status": "doing"
+    },
+    {
+      "id": "7",
+      "creatorId": "3",
+      "title": "another title",
+      "content": "is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to m",
+      "tags": [
+        "tag1",
+        "tag22",
+        "tag35"
+      ],
+      "status": "doing"
+    },
+    {
+      "id": "8",
+      "creatorId": "3",
+      "title": "another title",
+      "content": "is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to m",
+      "tags": [
+        "tag13",
+        "tag2",
+        "tag3"
+      ],
+      "status": "todo"
+    },
+    {
+      "id": "9",
+      "creatorId": "3",
+      "title": "another title",
+      "content": "is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to m",
+      "tags": [
+        "tag1",
+        "tag42",
+        "tag3"
+      ],
+      "status": "doing"
+    },
+    {
+      "id": "4",
+      "creatorId": "2",
+      "title": "todo title",
+      "content": "is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to m",
+      "tags": [
+        "tag11",
+        "tag23",
+        "tag34"
+      ],
+      "status": "done"
+    },
+    {
+      "id": "3039",
+      "creatorId": 1,
+      "title": "sadf",
+      "content": "ert tetwer",
+      "tags": [
+        "gsdfgsdfg"
+      ],
+      "status": "doing"
+    }
+  ]
+}
