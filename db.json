@@ -32,7 +32,7 @@
         "asdf",
         "sadf"
       ],
-      "status": "todo"
+      "status": "done"
     },
     {
       "id": "5",
@@ -129,16 +129,6 @@
         "tag34"
       ],
       "status": "done"
-    },
-    {
-      "id": "3039",
-      "creatorId": 1,
-      "title": "sadf",
-      "content": "ert tetwer",
-      "tags": [
-        "gsdfgsdfg"
-      ],
-      "status": "doing"
     }
   ]
 }
