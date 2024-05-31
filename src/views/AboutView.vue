@@ -27,7 +27,7 @@
     <v-row class="d-flex justify-center">
       <v-col cols="11" md="8" xl="6">
         <v-card
-          class="bg-purple-lighten-1 elevation-10"
+          class="bg-purple-lighten-1 elevation-10 animate__animated animate__fadeInUp"
           title="Memo Master"
           subtitle="Created by Mohanad Farid"
           variant="tonal"

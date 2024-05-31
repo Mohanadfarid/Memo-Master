@@ -38,11 +38,6 @@ const router = createRouter({
       path: '/notes',
       children: [
         {
-          path: ':id',
-          name: 'viewNote',
-          component: () => import('../views/ViewNote.vue')
-        },
-        {
           path: 'add',
           name: 'addNote',
           component: () => import('../views/CreateOrUpdateNote.vue')

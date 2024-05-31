@@ -19,7 +19,7 @@
   >
     <v-row class="d-flex justify-center">
       <v-col cols="11" md="8" xl="6">
-        <v-card class="elevation-3 rounded d-flex">
+        <v-card class="elevation-3 rounded d-flex animate__animated animate__fadeInUp">
           <v-img
             class="d-none d-lg-inline-block"
             :width="500"
