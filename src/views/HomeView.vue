@@ -17,16 +17,20 @@
 
   <v-row class="w-100 pt-5 px-5">
     <v-col :key="index" v-for="note , index in filteredNotes" cols="12" sm="6" lg="3">
-      <NoteCard :noteData="note" />
+      <NoteCard :noteData="note" data-aos="fade-up"/>
     </v-col>
   </v-row>
 </template>
 
 <script setup>
 import { useNotesStore } from '@/stores/notes'
-import { computed, onMounted } from 'vue'
+import { computed, onMounted ,ref } from 'vue'
 import NoteCard from '@/components/NoteCard.vue'
-import { ref } from 'vue'
+import AOS from "aos";
+
+onMounted(() => {
+    AOS.init();
+})
 
 const filters = ref(['all', 'todo', 'done', 'doing', 'personal'])
 const appliedFilter = ref('all')

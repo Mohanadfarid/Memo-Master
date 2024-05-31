@@ -1,7 +1,7 @@
 <template>
   <v-row class="d-flex justify-center align-center">
     <v-col cols="12" md="10" xl="8">
-      <v-card class="ma-5 pa-5 pa-md-15 animate__animated animate__fadeIn animate__slow" elevation="15"
+      <v-card class="ma-5 pa-5 pa-md-15 animate__animated animate__fadeIn " elevation="15"
         ><h2 class="text-center">{{ componentMode }} Note</h2>
         <v-form>
           <!-- title -->

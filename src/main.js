@@ -9,6 +9,9 @@ import router from './router'
 // animate.css
 import 'animate.css';
 
+// animate on scroll
+import 'aos/dist/aos.css'
+
 // vuetify
 import { createVuetify } from 'vuetify'
 import 'vuetify/styles'
