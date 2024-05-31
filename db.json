@@ -5,6 +5,7 @@
       "name": "mohanad",
       "age": 20,
       "email": "mohanadfarid733@gmail.com",
+      "bio": "Passionate about technology and coding. Always exploring new software and working on innovative projects. Love to share knowledge and collaborate with like-minded individuals.",
       "userImage": "https://picsum.photos/300/300"
     },
     {
@@ -12,6 +13,7 @@
       "name": "ali",
       "age": 16,
       "email": "ali123@gmail.com",
+      "bio": "Avid writer with a love for crafting stories and creating engaging content. Enjoys reading, traveling, and finding inspiration in everyday life. Always looking for new adventures to write about.",
       "userImage": "https://picsum.photos/250/350"
     },
     {
@@ -19,6 +21,7 @@
       "name": "jack",
       "age": 25,
       "email": "jack456@gmail.com",
+      "bio": "Dedicated to living a healthy and active lifestyle. Enjoys running, hiking, and experimenting with new fitness routines. Believes in the power of positivity and staying motivated through challenges.",
       "userImage": "https://picsum.photos/250/300"
     }
   ],
@@ -28,10 +31,7 @@
       "creatorId": 1,
       "title": "a title ",
       "content": "is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to m ",
-      "tags": [
-        "asdf",
-        "sadf"
-      ],
+      "tags": ["asdf", "sadf"],
       "status": "done"
     },
     {
@@ -39,11 +39,7 @@
       "creatorId": "2",
       "title": "todo title",
       "content": "is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to m",
-      "tags": [
-        "tag12",
-        "tag24",
-        "tag32"
-      ],
+      "tags": ["tag12", "tag24", "tag32"],
       "status": "todo"
     },
     {
@@ -51,11 +47,7 @@
       "creatorId": "1",
       "title": "another title",
       "content": "is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to m",
-      "tags": [
-        "tag3",
-        "tag4",
-        "tag5"
-      ],
+      "tags": ["tag3", "tag4", "tag5"],
       "status": "done"
     },
     {
@@ -63,11 +55,7 @@
       "creatorId": "1",
       "title": "another title",
       "content": "is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to m",
-      "tags": [
-        "tag1",
-        "tag2",
-        "tag3"
-      ],
+      "tags": ["tag1", "tag2", "tag3"],
       "status": "done"
     },
     {
@@ -75,11 +63,7 @@
       "creatorId": "2",
       "title": "another title",
       "content": "is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to m",
-      "tags": [
-        "tag11",
-        "tag42",
-        "tag53"
-      ],
+      "tags": ["tag11", "tag42", "tag53"],
       "status": "doing"
     },
     {
@@ -87,11 +71,7 @@
       "creatorId": "3",
       "title": "another title",
       "content": "is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to m",
-      "tags": [
-        "tag1",
-        "tag22",
-        "tag35"
-      ],
+      "tags": ["tag1", "tag22", "tag35"],
       "status": "doing"
     },
     {
@@ -99,11 +79,7 @@
       "creatorId": "3",
       "title": "another title",
       "content": "is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to m",
-      "tags": [
-        "tag13",
-        "tag2",
-        "tag3"
-      ],
+      "tags": ["tag13", "tag2", "tag3"],
       "status": "todo"
     },
     {
@@ -111,11 +87,7 @@
       "creatorId": "3",
       "title": "another title",
       "content": "is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to m",
-      "tags": [
-        "tag1",
-        "tag42",
-        "tag3"
-      ],
+      "tags": ["tag1", "tag42", "tag3"],
       "status": "doing"
     },
     {
@@ -123,11 +95,7 @@
       "creatorId": "2",
       "title": "todo title",
       "content": "is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to m",
-      "tags": [
-        "tag11",
-        "tag23",
-        "tag34"
-      ],
+      "tags": ["tag11", "tag23", "tag34"],
       "status": "done"
     }
   ]
