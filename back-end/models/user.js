@@ -10,23 +10,41 @@ const User = sequelize.define("User", {
   },
   name: {
     type: DataTypes.STRING,
+    validate: {
+      notEmpty: {
+        msg: "name cannot be empty",
+      },
+    },
   },
   email: {
     type: DataTypes.STRING,
     allowNull: false,
     validate: {
-      isEmail: true,
+      isEmail: {
+        msg: "email must be a valid email address",
+      },
     },
   },
   password: {
     type: DataTypes.STRING,
     allowNull: false,
+    validate: {
+      notEmpty: {
+        msg: "password cannot be empty",
+      },
+    },
   },
   age: {
     type: DataTypes.INTEGER,
     validate: {
-      max: 120,
-      min: 1,
+      max: {
+        args: 120,
+        msg: "age cannot be greater than 120",
+      },
+      min: {
+        args: 1,
+        msg: "age must be at least 1",
+      },
     },
   },
   bio: {
