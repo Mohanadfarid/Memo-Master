@@ -1,5 +1,10 @@
 const router = require("express").Router();
-router.get("/notes", (req, res) => {
-  res.send("the is a simple funciton to test the notes endpoint");
-});
+const notesController = require("../controllers/notes");
+
+router.get("/", notesController.getNotes);
+router.get("/:id", notesController.getNote);
+router.post("/", notesController.createNote);
+router.patch("/:id", notesController.patchNote);
+router.delete("/:id", notesController.deleteNote);
+
 module.exports = router;

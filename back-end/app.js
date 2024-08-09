@@ -20,9 +20,9 @@ app.get("/", (req, res) => {  // created for testing purposes delete later !
 const startServer = async () => {
   try {
     //routes
-    app.use(notesRouter);
+    app.use('/notes',notesRouter);
     app.use(tagsRouter);
-    app.use(usersRouter);
+    app.use('/users',usersRouter);
 
     // db relations
     // one to many relation between note and user
