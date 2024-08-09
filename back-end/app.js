@@ -1,5 +1,11 @@
 const express = require("express");
 const sequelize = require("./config");
+// routes
+const notesRouter = require("./routes/notes");
+const tagsRouter = require("./routes/tags");
+const usersRouter = require("./routes/users");
+
+//models
 const User = require("./models/user");
 const Note = require("./models/note");
 const Tag = require("./models/tag");
@@ -7,12 +13,18 @@ const Tag = require("./models/tag");
 const app = express();
 const port = 3001;
 
-app.get("/", (req, res) => {
+app.get("/", (req, res) => {  // created for testing purposes delete later !
   res.send("Hello World!");
 });
 
 const startServer = async () => {
   try {
+    //routes
+    app.use(notesRouter);
+    app.use(tagsRouter);
+    app.use(usersRouter);
+
+    // db relations
     // one to many relation between note and user
     User.hasMany(Note);
     Note.belongsTo(User);
@@ -22,6 +34,7 @@ const startServer = async () => {
     Tag.belongsToMany(Note, { through: "NoteTag" });
 
     await sequelize.sync(); // Use await to handle the promise
+
     app.listen(port, () => {
       console.log(`The server is up and running at http://localhost:${port}/`);
     });
