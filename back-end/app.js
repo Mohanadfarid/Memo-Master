@@ -13,16 +13,19 @@ const Tag = require("./models/tag");
 const app = express();
 const port = 3001;
 
-app.get("/", (req, res) => {  // created for testing purposes delete later !
+app.get("/", (req, res) => {
+  // created for testing purposes delete later !
   res.send("Hello World!");
 });
+
+app.use(express.json());
 
 const startServer = async () => {
   try {
     //routes
-    app.use('/notes',notesRouter);
+    app.use("/notes", notesRouter);
     app.use(tagsRouter);
-    app.use('/users',usersRouter);
+    app.use("/users", usersRouter);
 
     // db relations
     // one to many relation between note and user
