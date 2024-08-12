@@ -43,7 +43,7 @@ exports.postLogin = async (req, res) => {
     }
 
     // generating token if the email exist and the password match
-    const token = jwt.sign({ id: user.id }, SECRET_KEY);
+    const token = jwt.sign({ id: user.id }, SECRET_KEY, { expiresIn: "1h" });
     res.status(200).json({ token });
   } catch (error) {
     console.log(error);
@@ -93,8 +93,25 @@ exports.postRegistration = async (req, res) => {
   }
 };
 
-exports.patchUser = (req, res) => {
-  res.send("this is the patch user controller");
+exports.patchUser = async (req, res) => {
+  const token = req.headers.authorization.split(" ")[1];
+  try {
+    const { id } = jwt.verify(token, SECRET_KEY);
+    const user = await User.findByPk(id);
+
+    //handling if there is no user
+    if (!user) {
+      res.status(404).json({ error: "user not found" });
+      return;
+    }
+
+    user.update(req.body) 
+
+    res.status(200).json({ message: "user updated successfully" });
+  } catch (error) {
+    console.log(error);
+    res.status(401).json({ error: "patch failed" });
+  }
 };
 
 exports.deleteUser = async (req, res) => {
@@ -106,6 +123,7 @@ exports.deleteUser = async (req, res) => {
     //handling if there is no user
     if (!user) {
       res.status(404).json({ error: "user not found" });
+      return;
     }
 
     user.destroy();
