@@ -89,6 +89,7 @@ exports.postRegistration = async (req, res) => {
       // generac error
       console.log(error);
       res.status(500).json({ error: "Registration failed" });
+      return;
     }
   }
 };
@@ -105,7 +106,7 @@ exports.patchUser = async (req, res) => {
       return;
     }
 
-    user.update(req.body) 
+    user.update(req.body);
 
     res.status(200).json({ message: "user updated successfully" });
   } catch (error) {

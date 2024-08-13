@@ -1,4 +1,6 @@
 const express = require("express");
+const cors = require('cors');
+
 const sequelize = require("./config");
 // routes
 const notesRouter = require("./routes/notes");
@@ -13,12 +15,14 @@ const Tag = require("./models/tag");
 const app = express();
 const port = 3001;
 
+app.use(express.json());
+app.use(cors());
+
 app.get("/", (req, res) => {
   // created for testing purposes delete later !
   res.send("Hello World!");
 });
 
-app.use(express.json());
 
 const startServer = async () => {
   try {
