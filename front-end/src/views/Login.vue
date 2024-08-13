@@ -1,23 +1,28 @@
 <script setup>
   import { ref } from "vue";
+  import { UserDataStore } from "@/stores/user";
 
+  const userStore = UserDataStore();
   const username = ref("");
   const password = ref("");
 
   const handleSubmit = () => {
     // to do handel actual submit here !
     console.log(username.value, password.value);
+    userStore.login();
   };
 </script>
 
 <template>
   <div
-    class="w-100 d-flex justify-center align-center bg-purple-lighten-3 "
+    class="w-100 d-flex justify-center align-center bg-purple-lighten-3"
     style="min-height: 100vh"
   >
     <v-row class="d-flex justify-center">
       <v-col cols="11" md="8" xl="6">
-        <v-card class="elevation-3 rounded d-flex animate__animated animate__fadeInUp">
+        <v-card
+          class="elevation-3 rounded d-flex animate__animated animate__fadeInUp"
+        >
           <v-img
             class="d-none d-lg-inline-block"
             :width="500"

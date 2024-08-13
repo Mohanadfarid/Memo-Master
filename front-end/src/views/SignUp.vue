@@ -1,14 +1,25 @@
 <script setup>
+  import { UserDataStore } from "@/stores/user";
   import { ref } from "vue";
+  const userStore = UserDataStore();
 
-  const username = ref("");
+  const email = ref("");
   const password = ref("");
   const name = ref("");
   const age = ref("");
+  const imageUrl = ref("");
+
+  const passwordVisible = ref(true);
 
   const handleSubmit = () => {
-    // to do handel actual submit here !
-    console.log(username.value, password.value);
+    console.log("tseet");
+    userStore.register({
+      name: name.value,
+      email: email.value,
+      age: age.value,
+      password: password.value,
+      imageUrl: imageUrl.value,
+    });
   };
 </script>
 
@@ -19,7 +30,9 @@
   >
     <v-row class="d-flex justify-center">
       <v-col cols="11" md="8" xl="6">
-        <v-card class="elevation-3 rounded d-flex animate__animated animate__fadeInUp">
+        <v-card
+          class="elevation-3 rounded d-flex animate__animated animate__fadeInUp"
+        >
           <v-img
             class="d-none d-lg-inline-block"
             :width="500"
@@ -40,22 +53,43 @@
                 label="name"
                 variant="outlined"
               ></v-text-field>
+
               <v-text-field
                 v-model="age"
                 type="number"
                 label="age"
                 variant="outlined"
               ></v-text-field>
+
               <v-text-field
-                v-model="username"
-                label="email or username"
+                v-model="email"
+                label="email"
+                type="email"
                 variant="outlined"
               ></v-text-field>
+
+              <v-text-field
+                v-model="imageUrl"
+                label="imageUrl"
+                variant="outlined"
+              ></v-text-field>
+
               <v-text-field
                 v-model="password"
                 label="password"
+                :type="passwordVisible ? 'text' : 'password'"
                 variant="outlined"
-              ></v-text-field>
+              >
+                <template #append-inner>
+                  <v-icon @click="passwordVisible = !passwordVisible">
+                    {{
+                      passwordVisible
+                        ? "mdi-eye-off-outline"
+                        : "mdi-eye-outline"
+                    }}
+                  </v-icon>
+                </template>
+              </v-text-field>
 
               <v-btn
                 class="mt-5 mx-auto w-100"
