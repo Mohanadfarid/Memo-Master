@@ -26,10 +26,21 @@ export const UserDataStore = defineStore("userData", () => {
       });
       const data = await res.json();
 
-      // handle if the if the server responded with some errors
-      if (data.error || !res.ok) {
-        throw new Error(data.error || "error some thing went wrong !");
+      // handle spcific validation errors
+      if(data.error){
+        toast(`${data.error}`, {
+          autoClose: 3000,
+          type: "error",
+          theme: "dark",
+        });
+        return data
       }
+
+      // handle general req failure
+      if (!res.ok) {
+        throw new Error("error something went wrong !");
+      }
+
 
       toast(`${data.message}`, {
         autoClose: 3000,

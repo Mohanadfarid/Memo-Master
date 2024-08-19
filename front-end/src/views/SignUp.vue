@@ -9,17 +9,33 @@
   const age = ref("");
   const imageUrl = ref("");
 
+  const loading = ref(false);
+
+  const backendErrorsState = ref({
+    error: "",
+    email: "",
+    name: "",
+    age: "",
+    password:""
+  });
+
   const passwordVisible = ref(true);
 
-  const handleSubmit = () => {
-    console.log("tseet");
-    userStore.register({
+  const handleSubmit = async () => {
+    loading.value = true;
+    const backEndErrors = await userStore.register({
       name: name.value,
       email: email.value,
       age: age.value,
       password: password.value,
       imageUrl: imageUrl.value,
     });
+    loading.value = false;
+    // if the back end responded with errors we set their values
+    if (backEndErrors) {
+      console.log(backEndErrors);
+      backendErrorsState.value = { ...backEndErrors };
+    }
   };
 </script>
 
@@ -31,6 +47,7 @@
     <v-row class="d-flex justify-center">
       <v-col cols="11" md="8" xl="6">
         <v-card
+          :loading="loading"
           class="elevation-3 rounded d-flex animate__animated animate__fadeInUp"
         >
           <v-img
@@ -49,35 +66,44 @@
             </v-card-title>
             <form>
               <v-text-field
+                class="mb-2"
                 v-model="name"
                 label="name"
+                :error-messages="backendErrorsState.name || []"
                 variant="outlined"
               ></v-text-field>
 
               <v-text-field
+                class="mb-2"
                 v-model="age"
                 type="number"
                 label="age"
+                :error-messages="backendErrorsState.age || []"
                 variant="outlined"
               ></v-text-field>
 
               <v-text-field
+                class="mb-2"
                 v-model="email"
                 label="email"
                 type="email"
+                :error-messages="backendErrorsState.email || []"
                 variant="outlined"
               ></v-text-field>
 
               <v-text-field
+                class="mb-2"
                 v-model="imageUrl"
                 label="imageUrl"
                 variant="outlined"
               ></v-text-field>
 
               <v-text-field
+                class="mb-2"
                 v-model="password"
                 label="password"
                 :type="passwordVisible ? 'text' : 'password'"
+                :error-messages="backendErrorsState.password || []"
                 variant="outlined"
               >
                 <template #append-inner>
@@ -96,6 +122,7 @@
                 @click.prevent="handleSubmit"
                 size="large"
                 color="purple"
+                :loading="loading"
               >
                 sign in
               </v-btn>
