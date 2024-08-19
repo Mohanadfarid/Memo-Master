@@ -55,6 +55,17 @@ exports.postRegistration = async (req, res) => {
   try {
     console.log(req.body);
     const { email, name, age, bio, imageUrl, password } = req.body;
+
+    // handling if the uesr is empty before hashing it
+    if (!password || password.trim() === "") {
+      return res
+        .status(400)
+        .json({
+          password: "password cannot be empty",
+          error: "validation errors",
+        });
+    }
+
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // handdling if the user already exsists
@@ -76,10 +87,11 @@ exports.postRegistration = async (req, res) => {
     // handling validation errors
     if (error instanceof ValidationError) {
       const { errors } = error;
+      console.log(errors);
       let formatedErrors = {};
 
       errors.forEach((err) => {
-        console.log(formatedErrors);
+        // console.log(formatedErrors);
         formatedErrors[err.path] = err.message;
       });
 
@@ -88,8 +100,7 @@ exports.postRegistration = async (req, res) => {
     } else {
       // generac error
       console.log(error);
-      res.status(500).json({ error: "Registration failed" });
-      return;
+      return res.status(500).json({ error: "Registration failed" });
     }
   }
 };

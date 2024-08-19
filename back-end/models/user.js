@@ -38,6 +38,9 @@ const User = sequelize.define("User", {
   age: {
     type: DataTypes.INTEGER,
     validate: {
+      notEmpty:{
+        msg:"age cannot be empty"
+      },
       max: {
         args: 120,
         msg: "age cannot be greater than 120",
