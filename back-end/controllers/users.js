@@ -56,17 +56,7 @@ exports.postRegistration = async (req, res) => {
     console.log(req.body);
     const { email, name, age, bio, imageUrl, password } = req.body;
 
-    // handling if the uesr is empty before hashing it
-    if (!password || password.trim() === "") {
-      return res
-        .status(400)
-        .json({
-          password: "password cannot be empty",
-          error: "validation errors",
-        });
-    }
-
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const hashedPassword = password ? await bcrypt.hash(password, 10):'';
 
     // handdling if the user already exsists
     const user = await User.findOne({ where: { email } });
