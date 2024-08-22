@@ -1,34 +1,57 @@
 <script setup>
   import { UserDataStore } from "@/stores/user";
   import { ref } from "vue";
+  import { useForm } from "vee-validate";
+  import * as yup from "yup";
+  import { computed } from "vue";
+
   const userStore = UserDataStore();
 
-  const email = ref("");
-  const password = ref("");
-  const name = ref("");
-  const age = ref("");
-  const imageUrl = ref("");
+  const { values, errors, defineField } = useForm({
+    validationSchema: yup.object({
+      email: yup.string().email().required(),
+      password: yup.string().min(6).required(),
+      name: yup.string().required(),
+      age: yup
+        .number()
+        .required()
+        .min(1, "Age must be greater than 1")
+        .max(120, "Age must be less than 120")
+        .typeError("Age must be a number"),
+    }),
+  });
+
+  const [email, emailAttrs] = defineField("email");
+  const [password, passwordAttrs] = defineField("password");
+  const [name, nameAttrs] = defineField("name");
+  const [age, ageAttrs] = defineField("age");
+  const [imageUrl, imageUrlAttrs] = defineField("imageUrl");
 
   const loading = ref(false);
+  const passwordVisible = ref(false);
+  const isFormValid = computed(() => {
+    if (Object.keys(errors.value).length !== 0) {
+      return false;
+    } else if (Object.keys(values).length < 4) {
+      return false;
+    } else {
+      return true;
+    }
+  });
 
   const backendErrorsState = ref({
     error: "",
     email: "",
     name: "",
     age: "",
-    password:""
+    password: "",
   });
-
-  const passwordVisible = ref(true);
 
   const handleSubmit = async () => {
     loading.value = true;
+
     const backEndErrors = await userStore.register({
-      name: name.value,
-      email: email.value,
-      age: age.value,
-      password: password.value,
-      imageUrl: imageUrl.value,
+      ...values,
     });
     loading.value = false;
     // if the back end responded with errors we set their values
@@ -68,32 +91,36 @@
               <v-text-field
                 class="mb-2"
                 v-model="name"
+                v-bind="nameAttrs"
                 label="name"
-                :error-messages="backendErrorsState.name || []"
+                :error-messages="errors.name || backendErrorsState.name || []"
                 variant="outlined"
               ></v-text-field>
 
               <v-text-field
                 class="mb-2"
                 v-model="age"
+                v-bind="ageAttrs"
                 type="number"
                 label="age"
-                :error-messages="backendErrorsState.age || []"
+                :error-messages="errors.age || backendErrorsState.age || []"
                 variant="outlined"
               ></v-text-field>
 
               <v-text-field
                 class="mb-2"
                 v-model="email"
+                v-bind="emailAttrs"
                 label="email"
                 type="email"
-                :error-messages="backendErrorsState.email || []"
+                :error-messages="errors.email || backendErrorsState.email || []"
                 variant="outlined"
               ></v-text-field>
 
               <v-text-field
                 class="mb-2"
                 v-model="imageUrl"
+                v-bind="imageUrlAttrs"
                 label="imageUrl"
                 variant="outlined"
               ></v-text-field>
@@ -101,9 +128,12 @@
               <v-text-field
                 class="mb-2"
                 v-model="password"
+                v-bind="passwordAttrs"
                 label="password"
                 :type="passwordVisible ? 'text' : 'password'"
-                :error-messages="backendErrorsState.password || []"
+                :error-messages="
+                  errors.password || backendErrorsState.password || []
+                "
                 variant="outlined"
               >
                 <template #append-inner>
@@ -123,6 +153,7 @@
                 size="large"
                 color="purple"
                 :loading="loading"
+                :disabled="!isFormValid"
               >
                 sign in
               </v-btn>
