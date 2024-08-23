@@ -4,6 +4,7 @@ import { BASE_URL } from "@/utils/constants";
 
 import { toast } from "vue3-toastify";
 import "vue3-toastify/dist/index.css";
+import router from "@/router";
 
 export const UserDataStore = defineStore("userData", () => {
   const id = ref(0);
@@ -41,13 +42,14 @@ export const UserDataStore = defineStore("userData", () => {
         throw new Error("error something went wrong !");
       }
 
+      router.push('/login').then(()=>{
+        toast(`${data.message}`, {
+          autoClose: 3000,
+          type: "success",
+          theme: "dark",
+        });
+      })
 
-      toast(`${data.message}`, {
-        autoClose: 3000,
-        type: "success",
-        theme: "dark",
-      });
-      console.log(data);
     } catch (error) {
       toast(`${error}`, {
         autoClose: 3000,
