@@ -44,7 +44,7 @@ exports.postLogin = async (req, res) => {
 
     // generating token if the email exist and the password match
     const token = jwt.sign({ id: user.id }, SECRET_KEY, { expiresIn: "1h" });
-    res.status(200).json({ token });
+    res.status(200).json({ token, message: "login succfully" });
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "login failed" });
@@ -56,7 +56,7 @@ exports.postRegistration = async (req, res) => {
     console.log(req.body);
     const { email, name, age, bio, imageUrl, password } = req.body;
 
-    const hashedPassword = password ? await bcrypt.hash(password, 10):'';
+    const hashedPassword = password ? await bcrypt.hash(password, 10) : "";
 
     // handdling if the user already exsists
     const user = await User.findOne({ where: { email } });

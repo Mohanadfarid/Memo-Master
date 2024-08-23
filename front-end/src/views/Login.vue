@@ -1,15 +1,54 @@
 <script setup>
   import { ref } from "vue";
   import { UserDataStore } from "@/stores/user";
+  import { useForm } from "vee-validate";
+  import * as yup from "yup";
+  import { computed } from "vue";
 
   const userStore = UserDataStore();
-  const username = ref("");
-  const password = ref("");
 
-  const handleSubmit = () => {
+  const { values, errors, defineField } = useForm({
+    validationSchema: yup.object({
+      email: yup.string().email().required(),
+      password: yup.string().min(6).required(),
+    }),
+  });
+
+  const [email, emailAttrs] = defineField("email");
+  const [password, passwordAttrs] = defineField("password");
+
+  const loading = ref(false);
+  const passwordVisible = ref(false);
+
+  const isFormValid = computed(() => {
+    if (Object.keys(errors.value).length !== 0) {
+      return false;
+    } else if (Object.keys(values).length < 2) {
+      return false;
+    } else {
+      return true;
+    }
+  });
+
+  const backendErrorsState = ref({
+    error: "",
+    email: "",
+    passowrd: "",
+  });
+
+  const handleSubmit = async () => {
     // to do handel actual submit here !
-    console.log(username.value, password.value);
-    userStore.login();
+    loading.value = true;
+
+    const backEndErrors = await userStore.login({
+      ...values,
+    });
+    loading.value = false;
+    // if the back end responded with errors we set their values
+    if (backEndErrors) {
+      console.log(backEndErrors);
+      backendErrorsState.value = { ...backEndErrors };
+    }
   };
 </script>
 
@@ -21,6 +60,7 @@
     <v-row class="d-flex justify-center">
       <v-col cols="11" md="8" xl="6">
         <v-card
+          :loading="loading"
           class="elevation-3 rounded d-flex animate__animated animate__fadeInUp"
         >
           <v-img
@@ -39,23 +79,44 @@
             </v-card-title>
             <form>
               <v-text-field
-                v-model="username"
-                label="email or username"
+                class="mb-2"
+                v-model="email"
+                v-bind="emailAttrs"
+                label="email "
                 variant="outlined"
+                :error-messages="errors.email || backendErrorsState.email || []"
               ></v-text-field>
               <v-text-field
+                class="mb-2"
                 v-model="password"
+                v-bind="passwordAttrs"
                 label="password"
                 variant="outlined"
-              ></v-text-field>
+                :type="passwordVisible ? 'text' : 'password'"
+                :error-messages="
+                  errors.password || backendErrorsState.password || []
+                "
+              >
+                <template #append-inner>
+                  <v-icon @click="passwordVisible = !passwordVisible">
+                    {{
+                      passwordVisible
+                        ? "mdi-eye-off-outline"
+                        : "mdi-eye-outline"
+                    }}
+                  </v-icon>
+                </template>
+              </v-text-field>
 
               <v-btn
                 class="mt-5 mx-auto w-100"
                 @click.prevent="handleSubmit"
                 size="large"
                 color="purple"
+                :loading="loading"
+                :disabled="!isFormValid"
               >
-                sign in
+                sign up
               </v-btn>
             </form>
 

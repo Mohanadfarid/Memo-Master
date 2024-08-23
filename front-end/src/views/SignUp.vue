@@ -155,7 +155,7 @@
                 :loading="loading"
                 :disabled="!isFormValid"
               >
-                sign in
+                sign up
               </v-btn>
             </form>
 

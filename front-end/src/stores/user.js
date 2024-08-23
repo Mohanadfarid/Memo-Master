@@ -8,13 +8,54 @@ import router from "@/router";
 
 export const UserDataStore = defineStore("userData", () => {
   const id = ref(0);
-  const token = ref("");
+  const token = ref(localStorage.getItem('memoMaster-authToken') || '');
   const name = ref("");
   const age = ref(0);
   const email = ref("");
 
-  const login = () => {
-    console.log(BASE_URL);
+  const login = async loginData => {
+    try {
+      const res = await fetch(`${BASE_URL}/users/login`, {
+        method: "POST",
+        body: JSON.stringify(loginData),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await res.json();
+
+      // handle spcific validation errors
+      if (data.error) {
+        toast(`${data.error}`, {
+          autoClose: 3000,
+          type: "error",
+          theme: "dark",
+        });
+        return data;
+      }
+
+      // handle general req failure
+      if (!res.ok) {
+        throw new Error("error something went wrong !");
+      }
+
+      token.value = data.token;
+      localStorage.setItem('memoMaster-authToken',data.token)
+
+      router.push("/").then(() => {
+        toast(`${data.message}`, {
+          autoClose: 3000,
+          type: "success",
+          theme: "dark",
+        });
+      });
+    } catch (error) {
+      toast(`${error}`, {
+        autoClose: 3000,
+        type: "error",
+        theme: "dark",
+      });
+    }
   };
   const register = async registrationData => {
     try {
@@ -28,13 +69,13 @@ export const UserDataStore = defineStore("userData", () => {
       const data = await res.json();
 
       // handle spcific validation errors
-      if(data.error){
+      if (data.error) {
         toast(`${data.error}`, {
           autoClose: 3000,
           type: "error",
           theme: "dark",
         });
-        return data
+        return data;
       }
 
       // handle general req failure
@@ -42,14 +83,13 @@ export const UserDataStore = defineStore("userData", () => {
         throw new Error("error something went wrong !");
       }
 
-      router.push('/login').then(()=>{
+      router.push("/login").then(() => {
         toast(`${data.message}`, {
           autoClose: 3000,
           type: "success",
           theme: "dark",
         });
-      })
-
+      });
     } catch (error) {
       toast(`${error}`, {
         autoClose: 3000,
