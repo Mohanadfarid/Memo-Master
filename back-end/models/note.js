@@ -11,10 +11,26 @@ const Note = sequelize.define("Note", {
   title: {
     type: DataTypes.STRING,
     allowNull: false,
+    validate: {
+      notNull: {
+        msg: "title cannot be null",
+      },
+      notEmpty: {
+        msg: "title cannot be empty",
+      },
+    },
   },
   content: {
     type: DataTypes.STRING,
     allowNull: false,
+    validate: {
+      notNull: {
+        msg: "content cannot be empty",
+      },
+      notEmpty: {
+        msg: "content cannot be empty",
+      },
+    },
   },
   status: {
     type: DataTypes.ENUM("todo", "done", "doing"),
