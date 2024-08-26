@@ -8,7 +8,7 @@ import router from "@/router";
 
 export const UserDataStore = defineStore("userData", () => {
   const id = ref(0);
-  const token = ref(localStorage.getItem('memoMaster-authToken') || '');
+  const token = ref(localStorage.getItem("memoMaster-authToken") || "");
   const name = ref("");
   const age = ref(0);
   const email = ref("");
@@ -40,7 +40,7 @@ export const UserDataStore = defineStore("userData", () => {
       }
 
       token.value = data.token;
-      localStorage.setItem('memoMaster-authToken',data.token)
+      localStorage.setItem("memoMaster-authToken", data.token);
 
       router.push("/").then(() => {
         toast(`${data.message}`, {
@@ -99,7 +99,23 @@ export const UserDataStore = defineStore("userData", () => {
     }
   };
   const logout = () => {};
-  const getUserData = () => {};
+  const getUserData = async () => {
+    try {
+      const res = await fetch(`${BASE_URL}/users/`, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await res.json();
+      
+    } catch (error) {
+      toast(`${error}`, {
+        autoClose: 3000,
+        type: "error",
+        theme: "dark",
+      });
+    }
+  };
   const deleteUser = () => {};
   const patchUserData = () => {};
 
