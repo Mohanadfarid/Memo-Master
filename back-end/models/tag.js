@@ -10,6 +10,9 @@ const Tag = sequelize.define("Tag", {
   },
   content: {
     type: DataTypes.STRING,
+    unique:{
+      msg:'the content must be uniqe'
+    },
   },
 });
 

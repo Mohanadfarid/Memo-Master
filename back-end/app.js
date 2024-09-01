@@ -1,5 +1,5 @@
 const express = require("express");
-const cors = require('cors');
+const cors = require("cors");
 
 const sequelize = require("./config");
 // routes
@@ -22,7 +22,6 @@ app.get("/", (req, res) => {
   // created for testing purposes delete later !
   res.send("Hello World!");
 });
-
 
 const startServer = async () => {
   try {
