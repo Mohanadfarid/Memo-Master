@@ -8,12 +8,25 @@ const { ValidationError } = require("sequelize");
 
 // to do add pagination , search , filters qurey params
 
-exports.getNotes = (req, res) => {
-  res.send("get notes controller");
+exports.getNotes = async (req, res) => {
+  try {
+    const notes = await Note.findAll({ include: Tag });
+    return res.status(200).json({ message: "success", notes });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json("error");
+  }
 };
 
-exports.getNote = (req, res) => {
-  res.send("get note controller");
+exports.getNote = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const note = await Note.findByPk(id, { include: Tag });
+    return res.status(200).json({ message: "success", note });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json("error");
+  }
 };
 
 exports.createNote = async (req, res) => {
