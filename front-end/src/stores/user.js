@@ -9,7 +9,6 @@ import router from "@/router";
 export const UserDataStore = defineStore("userData", () => {
   const token = ref(localStorage.getItem("memoMaster-authToken") || "");
   const name = ref(localStorage.getItem("memoMaster-userName") || "");
-  const age = ref(localStorage.getItem("memoMaster-userAge") || 0);
   const email = ref(localStorage.getItem("memoMaster-userEmail") || "");
 
   const login = async loginData => {
@@ -41,7 +40,6 @@ export const UserDataStore = defineStore("userData", () => {
       // setting the store data
       token.value = data.token;
       name.value = data.name;
-      age.value = data.age;
       email.value = data.email;
 
       // setting the local storage data
@@ -131,7 +129,6 @@ export const UserDataStore = defineStore("userData", () => {
   return {
     token,
     name,
-    age,
     email,
     login,
     register,
