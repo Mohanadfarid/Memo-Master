@@ -11,19 +11,23 @@
     <v-list>
       <v-list-item
         prepend-avatar="https://picsum.photos/200/300"
-        title="Sandra Adams"
+        :title="userState.name || 'not setted'"
       >
-        <template v-slot:append>
-
-        </template>
+        <template v-slot:append></template>
       </v-list-item>
     </v-list>
-    <v-app-bar-nav-icon variant="text" @click="emit('toggleNavigationDrawer')"></v-app-bar-nav-icon
-  ></v-app-bar>
+    <v-app-bar-nav-icon
+      variant="text"
+      @click="emit('toggleNavigationDrawer')"
+    ></v-app-bar-nav-icon>
+  </v-app-bar>
 </template>
 
 <script setup>
-const emit = defineEmits(['toggleNavigationDrawer'])
+  import { UserDataStore } from "@/stores/user";
+
+  const emit = defineEmits(["toggleNavigationDrawer"]);
+  const userState = UserDataStore();
 </script>
 
 <style lang="scss"></style>

@@ -1,10 +1,10 @@
 <template>
-  <v-navigation-drawer color="purple" permanent v-model="props.drawer" style="opacity: 0.8">
+  <v-navigation-drawer color="purple" permanent v-model="props.drawer" >
     <v-list class="ba-14">
       <v-list-item
         prepend-avatar="https://picsum.photos/200/300"
-        subtitle="sandra_a88@gmail.com"
-        title="Sandra Adams"
+        :subtitle="userState.email || 'not setted'"
+        :title="userState.name || 'not setted'"
       ></v-list-item>
     </v-list>
     <v-divider></v-divider>
@@ -19,7 +19,10 @@
 </template>
 
 <script setup>
+import { UserDataStore } from '@/stores/user';
+
 const props = defineProps(['drawer'])
+const userState = UserDataStore()
 
 const signOutHandler = () => {}
 </script>

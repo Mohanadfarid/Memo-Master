@@ -44,7 +44,14 @@ exports.postLogin = async (req, res) => {
 
     // generating token if the email exist and the password match
     const token = jwt.sign({ id: user.id }, SECRET_KEY, { expiresIn: "1h" });
-    res.status(200).json({ token, message: "login succfully" });
+
+    // additional data to be bassed when login
+    const additonalData = {
+      name: user.name,
+      age: user.age,
+      email: user.email,
+    };
+    res.status(200).json({ token, ...additonalData, message: "login succfully" });
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "login failed" });
